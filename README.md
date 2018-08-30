@@ -27,33 +27,33 @@ dependencies {
 import jp.ne.poropi.shakelibrary.ShakeSensor // これ追加
 
 class MainActivity : AppCompatActivity(), ShakeSensor.OnShakeListener { // ←クラス実装する場合
-    lateinit var mListener: ShakeListener
+    lateinit var mShakeSensor: ShakeSensor
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mListener = ShakeSensor(this)
-//        // 匿名クラス（Lambda）の実装でもOK！
-//        mListener.setOnShakeListener {
+        mShakeSensor = ShakeSensor(this)
+//        // setOnShakeListenerにLambdaで実装もOK
+//        mShakeSensor.setOnShakeListener {
 //            Log.d("","ShakeListener speed: $it")
 //        }
     }
 
     // 振った結果は、以下のメソッドにコールバックされるので、お好きな処理を実装しましょう！
     override fun onShake(speed: Float) {
-        Log.d("","ShakeListener speed: $speed")
+        Log.d("","mShakeSensor speed: $speed")
     }
 
     override fun onResume() {
         // resume時に以下のメソッドを呼んでください
-        mListener.resume()
+        mShakeSensor.resume()
         super.onResume()
     }
 
     override fun onPause() {
         // pause時に以下のメソッドを呼んでください
-        mListener.pause()
+        mShakeSensor.pause()
         super.onPause()
     }
 }
