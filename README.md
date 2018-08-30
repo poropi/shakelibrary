@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'jp.ne.poropi.shakelibrary:shakelibrary:1.0.0'
+    implementation 'jp.ne.poropi:shakelibrary:1.0.1'
 }
 ```
 
@@ -24,18 +24,17 @@ dependencies {
 例としてActivityに実装していますが、ServiceでもOKです。
 
 ```
-import jp.ne.poropi.shakelibrary.ShakeListener // これ追加
+import jp.ne.poropi.shakelibrary.ShakeSensor // これ追加
 
-class MainActivity : AppCompatActivity(), ShakeListener.OnShakeListener {
+class MainActivity : AppCompatActivity(), ShakeSensor.OnShakeListener { // ←クラス実装する場合
     lateinit var mListener: ShakeListener
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mListener = ShakeListener(this)
-        mListener.setOnShakeListener(this)
-        // 以下の実装でもOK！
+        mListener = ShakeSensor(this)
+//        // 匿名クラス（Lambda）の実装でもOK！
 //        mListener.setOnShakeListener {
 //            Log.d("","ShakeListener speed: $it")
 //        }
